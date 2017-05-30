@@ -11,7 +11,9 @@
     <title>GifTastic</title>
 </head>
 
+
 <body>
+<!-- Rendered buttons will get dumped Here  -->
     <div id="animalButtons">
 
     </div>
@@ -19,78 +21,85 @@
     <form id="animal-form">
         <label for="animal-input">Add an animal</label>
         <input type="text" id="animal-input"><br>
-
+        
+        <!-- Button triggers new movie to be added -->
         <input id="addAnimal" type="submit" value="submit">
     </form>
-
-    <div id="animals">
-
-    </div>
+    
+    <!-- Movies will get dumped dere -->
+    <div id="animals"></div>
 
     <script type="text/javascript">
         $(document).ready(function() {
+            // Initial array of animals
             var animals = ["llama", "donkey", "pig", "sloth", "wolf"];
-
+      
+            // displayAnimalInfo function re-renders the HTML to display the appropriate content
             function displayAnimalInfo() {
                 var animal = $(this).attr("data-name");
-                console.log(animal);
+                //console.log(animal);
 
                 var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=10";
                 console.log(queryURL);
 
+                // Creating an AJAX call for the specific movie button being clicked
                 $.ajax({
                     url: queryURL,
                     method: "GET"
                 }).done(function(response) {
-                    console.log(queryURL);
-
-                    console.log(response);
+                    
 
                 })
             }
-
+            
+            // Function for displaying animal data
             function renderButtons() {
+
+                // Deleting the animals prior to adding new animals
+                // (this is necessary otherwise you will have repeat buttons)
                 $("#animalButtons").empty();
+        
+                // Looping through the array of movies
                 for (var i = 0; i < animals.length; i++) {
-                    console.log(animals);
+
+                    // Then dynamicaly generating buttons for each animal in the array
+                    // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
+                    console.log(animals); //can remove
                     var a = $("<button>");
+                    
+                    // Adding a class of animal to our button
                     a.addClass("buttons");
+
+                    // Adding a data-attribute
                     a.attr("data-name", animals[i]);
+
+                    // Providing the initial button text
                     a.text(animals[i]);
+
+                    // Adding the button to the buttons-view div
                     $("#animalButtons").append(a);
                 }
 
             }
 
+            // This function handles events where an animal button is clicked
             $("#addAnimal").on("click", function(event) {
                 event.preventDefault();
+                // This line grabs the input from the textbox
                 var animal = $("#animal-input").val().trim();
-                animals.push(animal);
                 
-                $("#animalButtons").empty();
-               
+                // Adding animal from the textbox to our array
+                animals.push(animal);
+
+                // Calling renderButtons which handles the processing of our animal array
                 renderButtons();
             });
-            $(document).on("click", ".animals", displayAnimalInfo);
+
+            // Adding a click event listener to all elements with a class of "animal" 
+            $(document).on("click", displayAnimalInfo);
+
+            // Calling the renderButtons function to display the intial buttons
             renderButtons();
-
-            function displayAnimalInfo() {
-                var animal = $(this).attr("data-name");
-
-                var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=10";
-                console.log(queryURL);
-
-                $.ajax({
-                    url: queryURL,
-                    method: "GET"
-                }).done(function(response) {
-                    console.log("bbb", queryURL);
-
-                    console.log(response);
-                    for (var b = 0; b < 10; b++);
-
-                })
-            }
 
         });
     </script>
