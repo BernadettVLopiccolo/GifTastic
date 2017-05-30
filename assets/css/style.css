@@ -1,0 +1,43 @@
+body {
+	background-image: url("../images/200_s.gif");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#animal-form {
+
+	font-size: 30px;
+}
+
+#addAnimal {
+    font-size: 30px;
+    background-color: #75a557;
+    border: 2px solid #a1a1a1;
+    border-radius: 25px;
+}
+
+form {
+  
+	text-align: right;
+	margin-right: 100px;
+	margin-top: 10px;
+}
+
+#animal-input {
+    width: 200px;
+    height: 30px;
+    border: 2px solid #a1a1a1;
+    border-radius: 25px;
+    margin-bottom: 15px;
+    font-size: 20px;
+
+}
+
+ .buttons {
+ 	margin-top: 30px;
+    font-size: 30px;
+    background-color: #75a557;
+    border: 2px solid #a1a1a1;
+    border-radius: 25px;
+
+}
