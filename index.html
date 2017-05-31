@@ -36,8 +36,13 @@
       
             // displayAnimalInfo function re-renders the HTML to display the appropriate content
             function displayAnimalInfo() {
+
+                $(document).on("click", ".gif", function() {
+
+
+                });
                 var animal = $(this).attr("data-name");
-                //console.log(animal);
+                console.log(this);
 
                 var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=10";
                 console.log(queryURL);
@@ -47,9 +52,16 @@
                     url: queryURL,
                     method: "GET"
                 }).done(function(response) {
-                    
+                    $("#animals").empty(animalButtons);
+                    for (var b = 0; b < response.data.length; b++) {
+                        var imgUrl = response.data[b].images.downsized_still.url;
+                        console.log(imgUrl);
+                        var animalDiv = $("<img>").attr("src", imgUrl).addClass("gif");
 
-                })
+                        $("#animals").append(animalDiv);
+                    }
+
+                });
             }
             
             // Function for displaying animal data
@@ -68,7 +80,7 @@
                     var a = $("<button>");
                     
                     // Adding a class of animal to our button
-                    a.addClass("buttons");
+                    a.addClass("btn");
 
                     // Adding a data-attribute
                     a.attr("data-name", animals[i]);
@@ -96,7 +108,7 @@
             });
 
             // Adding a click event listener to all elements with a class of "animal" 
-            $(document).on("click", displayAnimalInfo);
+            $(document).on("click", ".btn" , displayAnimalInfo);
 
             // Calling the renderButtons function to display the intial buttons
             renderButtons();
