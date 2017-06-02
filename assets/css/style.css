@@ -5,11 +5,12 @@ body {
 }
 
 #animal-form {
-
+    color: #fff;
 	font-size: 30px;
 }
 
 #addAnimal {
+	color: #fff;
     font-size: 30px;
     background-color: #75a557;
     border: 2px solid #a1a1a1;
@@ -19,8 +20,8 @@ body {
 form {
   
 	text-align: right;
-	margin-right: 100px;
-	margin-top: 10px;
+	margin-right: 20px;
+	margin-top: -45px;
 }
 
 #animal-input {
@@ -31,13 +32,22 @@ form {
     margin-bottom: 15px;
     font-size: 20px;
 
+
 }
 
 .btn {
- 	margin-top: 30px;
+ 	
     font-size: 30px;
     background-color: #75a557;
     border: 2px solid #a1a1a1;
     border-radius: 25px;
+    color: #fff;
+    margin: 5px;
 
+}
+
+.gif {
+   width: 400px;
+   height: 400px;
+   margin: 5px;
 }
